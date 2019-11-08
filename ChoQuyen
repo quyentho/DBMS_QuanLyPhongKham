@@ -1,0 +1,190 @@
+
+CREATE DATABASE QuanLyPhongKham
+USE QuanLyPhongKham
+
+CREATE TABLE Thuoc ( 
+	Ma_Thuoc int identity(1,1) primary key,
+	Ten	NVARCHAR(40),
+	SoLuong DECIMAL (10,2),
+	DonVi NVARCHAR (7),
+	Gia int,
+	HSD DATE
+);
+
+CREATE TABLE NhanVien (
+	Ma_NV int IDENTITY(1,1) PRIMARY KEY,
+	HoTen NVARCHAR(40),
+	NgaySinh DATE,
+	Chuc NVARCHAR(7),
+	Luong int,
+	TangCa int
+);
+CREATE TABLE BenhNhan (
+	Ma_BN int IDENTITY(1,1) PRIMARY KEY,
+	Ten NVARCHAR(40),
+	Tuoi INT,
+	GioiTinh int,
+	SDT int
+);
+CREATE TABLE DichVu (
+	Ma_DichVu int IDENTITY(1,1) PRIMARY KEY,
+	TenDV NVARCHAR(40),
+	Gia int
+);
+CREATE TABLE HoaDon (
+	Ma_HoaDon INT IDENTITY(1,1) PRIMARY KEY,
+	Ma_BN INT,
+	NgayKham DATE,
+	NgThanhToan INT,
+	BacSi INT,
+	TongTien INT,
+	FOREIGN KEY (Ma_BN) REFERENCES BenhNhan (Ma_BN),
+	FOREIGN KEY (NgThanhToan) REFERENCES NhanVien(Ma_NV),
+	FOREIGN KEY (BacSi) REFERENCES NhanVien(Ma_NV)
+);
+CREATE TABLE ChiTietDV (
+	Ma_HoaDon INT,
+	Ma_DichVu INT,
+	PRIMARY KEY (Ma_HoaDon,Ma_DichVu),
+	FOREIGN KEY (Ma_HoaDon) REFERENCES HoaDon(Ma_HoaDon),
+	FOREIGN KEY (Ma_DichVu) REFERENCES DichVu(Ma_Dichvu)
+);
+CREATE TABLE ToaThuoc (
+	Ma_HoaDon INT,
+	Ma_Thuoc INT,
+	SoLuong DECIMAL(10,2),
+	DonVi NVARCHAR(7),
+	HuongDanSD NVARCHAR(40),
+	BacSi INT,
+	PRIMARY KEY (Ma_HoaDon,Ma_Thuoc),
+	FOREIGN KEY (BacSi) REFERENCES NhanVien (Ma_NV),
+	FOREIGN KEY (Ma_Thuoc) REFERENCES Thuoc (Ma_Thuoc)
+);
+
+GO
+
+CREATE PROC ThemNhanVien
+	@HoTen NVARCHAR(40),
+	@NgaySinh DATE,
+	@Chuc NVARCHAR(7),
+	@Luong INT,
+	@TangCa INT
+AS
+BEGIN
+INSERT INTO NhanVien VALUES (@HoTen,@NgaySinh,@Chuc,@Luong,@TangCa);
+END
+GO
+CREATE PROC SuaNhanVien
+	@Ma_NV INT,
+	@HoTen NVARCHAR(40),
+	@NgaySinh DATE,
+	@Chuc NVARCHAR(7),
+	@Luong INT,
+	@TangCa INT
+AS
+BEGIN
+UPDATE NhanVien SET HoTen=@HoTen, 
+					NgaySinh=@NgaySinh, 
+					Chuc=@Chuc, 
+					Luong=@Luong, 
+					TangCa=@TangCa 
+				WHERE Ma_NV=@Ma_NV
+END
+GO
+CREATE FUNCTION DanhSachNV()
+ RETURNS TABLE
+ AS
+ RETURN	SELECT *
+		FROM NhanVien
+
+GO
+ALTER FUNCTION TimNVTheoTen(@HoTen NVARCHAR(40))
+ RETURNS TABLE
+ AS
+ RETURN	SELECT *
+		FROM NhanVien
+		WHERE NhanVien.HoTen like '%'+@HoTen+'%'
+GO
+ALTER FUNCTION TimNVTheoChuc(@Chuc NVARCHAR(7))
+ RETURNS TABLE
+ AS
+ RETURN	SELECT *
+		FROM NhanVien
+		WHERE NhanVien.Chuc='%'+@Chuc+'%'
+GO
+
+CREATE PROC ThemBenhNhan
+	@HoTen NVARCHAR(40),
+	@Tuoi INT,
+	@GioiTinh INT,
+	@SDT INT
+AS
+BEGIN
+INSERT INTO BenhNhan VALUES (@HoTen,@Tuoi,@GioiTinh,@SDT);
+END
+GO
+CREATE PROC SuaBenhNan
+	@Ma_BN INT,
+	@HoTen NVARCHAR(40),
+	@Tuoi INT,
+	@GioiTinh INT,
+	@SDT INT
+AS
+BEGIN
+UPDATE BenhNhan SET Ten=@HoTen, 
+					Tuoi=@Tuoi,
+					GioiTinh=@GioiTinh,
+					SDT=@SDT
+				WHERE Ma_BN=@Ma_BN
+END
+GO
+CREATE FUNCTION DanhSachBN()
+ RETURNS TABLE
+ AS
+ RETURN	SELECT *
+		FROM BenhNhan
+
+GO
+ALTER FUNCTION TimBNTheoTen(@Ten NVARCHAR(40))
+ RETURNS TABLE
+ AS
+ RETURN	SELECT *
+		FROM BenhNhan
+		WHERE BenhNhan.Ten='%'+@Ten+'%'
+GO
+
+CREATE PROC ThemDichVu
+	@TenDV NVARCHAR(40),
+	@Gia int
+AS
+BEGIN
+INSERT INTO DichVu VALUES (@TenDV,@Gia	);
+END
+GO
+CREATE PROC SuaDichVu
+	@Ma_DV INT,
+	@TenDV NVARCHAR(40),
+	@Gia int
+AS
+BEGIN
+UPDATE DichVu SET	TenDV=@TenDV,
+					Gia=@Gia
+				WHERE Ma_DichVu=@Ma_DV
+END
+GO
+CREATE FUNCTION DanhSachDV()
+ RETURNS TABLE
+ AS
+ RETURN	SELECT *
+		FROM DichVu
+
+GO
+CREATE TRIGGER KiemTraTen ON 
+
+EXEC SuaNhanVien 2,'LÊ VĂN HOÀNG','11/11/1999','PT',20000,15
+SELECT *
+FROM DanhSachNV()
+SELECT *
+FROM TimNVTheoTen('LÊ VĂN')
+SELECT *
+FROM TimNVTheoChuc('PT')
