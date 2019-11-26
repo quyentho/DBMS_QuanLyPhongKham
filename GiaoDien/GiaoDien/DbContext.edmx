@@ -1,0 +1,1417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLyPhongKhamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCounts">
+          <Key>
+            <PropertyRef Name="Ma_NV" />
+          </Key>
+          <Property Name="Ma_NV" Type="int" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassWord" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Quyen" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BenhNhan">
+          <Key>
+            <PropertyRef Name="Ma_BN" />
+          </Key>
+          <Property Name="Ma_BN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tuoi" Type="int" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChiTietDV">
+          <Key>
+            <PropertyRef Name="Ma_HoaDon" />
+            <PropertyRef Name="Ma_DichVu" />
+          </Key>
+          <Property Name="Ma_HoaDon" Type="int" Nullable="false" />
+          <Property Name="Ma_DichVu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DichVu">
+          <Key>
+            <PropertyRef Name="Ma_DichVu" />
+          </Key>
+          <Property Name="Ma_DichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" />
+        </EntityType>
+        <EntityType Name="DoanhThu">
+          <Key>
+            <PropertyRef Name="Ma_DoanhThu" />
+          </Key>
+          <Property Name="Ma_DoanhThu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayThu" Type="date" />
+          <Property Name="TongThu" Type="int" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="Ma_HoaDon" />
+          </Key>
+          <Property Name="Ma_HoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_BN" Type="int" Nullable="false" />
+          <Property Name="NgayKham" Type="date" Nullable="false" />
+          <Property Name="BacSi" Type="int" />
+          <Property Name="TongTien" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="Ma_NV" />
+          </Key>
+          <Property Name="Ma_NV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+          <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="TangCa" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" />
+        </EntityType>
+        <EntityType Name="Thuoc">
+          <Key>
+            <PropertyRef Name="Ma_Thuoc" />
+          </Key>
+          <Property Name="Ma_Thuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" />
+        </EntityType>
+        <EntityType Name="ToaThuoc">
+          <Key>
+            <PropertyRef Name="Ma_HoaDon" />
+            <PropertyRef Name="Ma_Thuoc" />
+          </Key>
+          <Property Name="Ma_HoaDon" Type="int" Nullable="false" />
+          <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="HuongDanSD" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+          <Property Name="BacSi" Type="int" />
+        </EntityType>
+        <Association Name="FK__ACCounts__Ma_NV__25869641">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+          <End Role="ACCounts" Type="Self.ACCounts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="Ma_NV" />
+            </Principal>
+            <Dependent Role="ACCounts">
+              <PropertyRef Name="Ma_NV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietDV__Ma_Di__1CF15040">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="1" />
+          <End Role="ChiTietDV" Type="Self.ChiTietDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="Ma_DichVu" />
+            </Principal>
+            <Dependent Role="ChiTietDV">
+              <PropertyRef Name="Ma_DichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChiTietDV__Ma_Ho__1BFD2C07">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ChiTietDV" Type="Self.ChiTietDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="Ma_HoaDon" />
+            </Principal>
+            <Dependent Role="ChiTietDV">
+              <PropertyRef Name="Ma_HoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__BacSi__1920BF5C">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="Ma_NV" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="BacSi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__Ma_BN__182C9B23">
+          <End Role="BenhNhan" Type="Self.BenhNhan" Multiplicity="1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BenhNhan">
+              <PropertyRef Name="Ma_BN" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="Ma_BN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ToaThuoc__BacSi__20C1E124">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="Ma_NV" />
+            </Principal>
+            <Dependent Role="ToaThuoc">
+              <PropertyRef Name="BacSi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ToaThuoc__Ma_Hoa__1FCDBCEB">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="Ma_HoaDon" />
+            </Principal>
+            <Dependent Role="ToaThuoc">
+              <PropertyRef Name="Ma_HoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ToaThuoc__Ma_Thu__21B6055D">
+          <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+          <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thuoc">
+              <PropertyRef Name="Ma_Thuoc" />
+            </Principal>
+            <Dependent Role="ToaThuoc">
+              <PropertyRef Name="Ma_Thuoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ChiDinhDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_BN" Type="int" Mode="In" />
+          <Parameter Name="Ma_DV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DangNhap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenTaiKhoan" Type="varchar" Mode="In" />
+          <Parameter Name="PassWord" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_NV" Type="int" Nullable="false" />
+                <Property Name="Quyen" Type="nvarchar" MaxLength="20" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DanhSachBN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_BN" Type="int" Nullable="false" />
+                <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Tuoi" Type="int" />
+                <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+                <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DanhSachDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_DichVu" Type="int" Nullable="false" />
+                <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="Gia" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DanhSachHDChuaTra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_HoaDon" Type="int" Nullable="false" />
+                <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Tuoi" Type="int" />
+                <Property Name="NgayKham" Type="date" Nullable="false" />
+                <Property Name="TongTien" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DanhSachNV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_NV" Type="int" Nullable="false" />
+                <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="NgaySinh" Type="date" Nullable="false" />
+                <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+                <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Luong" Type="int" Nullable="false" />
+                <Property Name="TangCa" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DanhSachThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+                <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="SoLuong" Type="int" Nullable="false" />
+                <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+                <Property Name="Gia" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DanhSachToaThuocBN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_BN" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="HuongDanSD" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="SoLuong" Type="int" Nullable="false" />
+                <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+                <Property Name="NgayKham" Type="date" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="DoiMatKhau" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_NV" Type="int" Mode="In" />
+          <Parameter Name="PassWord" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="HienDoanhThuNam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NamThu" Type="int" />
+                <Property Name="TONGTHU" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="HienDoanhThuNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ngay" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NgayThu" Type="date" />
+                <Property Name="TongThu" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="HienDoanhThuThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ngay" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ThangThu" Type="int" />
+                <Property Name="TONGTHU" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="SuaBenhNan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_BN" Type="int" Mode="In" />
+          <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Tuoi" Type="int" Mode="In" />
+          <Parameter Name="GioiTinh" Type="int" Mode="In" />
+          <Parameter Name="SDT" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SuaDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_DV" Type="int" Mode="In" />
+          <Parameter Name="TenDV" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SuaNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_NV" Type="int" Mode="In" />
+          <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="SDT" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Chuc" Type="nvarchar" Mode="In" />
+          <Parameter Name="Luong" Type="int" Mode="In" />
+          <Parameter Name="TangCa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SuaThuocCu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_Thuoc" Type="int" Mode="In" />
+          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="DonVi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TenDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ThanhToanHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_HoaDon" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemBenhNhan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Tuoi" Type="int" Mode="In" />
+          <Parameter Name="GioiTinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="SDT" Type="char" Mode="In" />
+        </Function>
+        <Function Name="ThemDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenDV" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_BN" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="SDT" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Chuc" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Luong" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemThuocMoi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="DonVi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Gia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemToaThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_BN" Type="int" Mode="In" />
+          <Parameter Name="TenThuoc" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoLuong" Type="decimal" Mode="In" />
+          <Parameter Name="Ma_NV" Type="int" Mode="In" />
+          <Parameter Name="HuongDanSD" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ThongTinInDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_HoaDon" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="Gia" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ThongTinInToaThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_HoaDon" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="HuongDanSD" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="SoLuong" Type="int" Nullable="false" />
+                <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimBNTheoSDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SDT" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_BN" Type="int" Nullable="false" />
+                <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Tuoi" Type="int" />
+                <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+                <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimBNTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_BN" Type="int" Nullable="false" />
+                <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Tuoi" Type="int" />
+                <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+                <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimDVTheoMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_DV" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_DichVu" Type="int" Nullable="false" />
+                <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="Gia" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimNVTheoChuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Chuc" Type="nvarchar(max)" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_NV" Type="int" Nullable="false" />
+                <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="NgaySinh" Type="date" Nullable="false" />
+                <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Luong" Type="int" Nullable="false" />
+                <Property Name="TangCa" Type="int" Nullable="false" />
+                <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimNVTheoMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhanVien" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_NV" Type="int" Nullable="false" />
+                <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="NgaySinh" Type="date" Nullable="false" />
+                <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Luong" Type="int" Nullable="false" />
+                <Property Name="TangCa" Type="int" Nullable="false" />
+                <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimNVTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_NV" Type="int" Nullable="false" />
+                <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="NgaySinh" Type="date" Nullable="false" />
+                <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="Luong" Type="int" Nullable="false" />
+                <Property Name="TangCa" Type="int" Nullable="false" />
+                <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimThuocTheoMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_Thuoc" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+                <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+                <Property Name="SoLuong" Type="int" Nullable="false" />
+                <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+                <Property Name="Gia" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimThuocTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar(max)" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="XoaDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_DV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_NV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ma_Thuoc" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="QuanLyPhongKhamModelStoreContainer">
+          <EntitySet Name="ACCounts" EntityType="Self.ACCounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenhNhan" EntityType="Self.BenhNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietDV" EntityType="Self.ChiTietDV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoanhThu" EntityType="Self.DoanhThu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ToaThuoc" EntityType="Self.ToaThuoc" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ACCounts__Ma_NV__25869641" Association="Self.FK__ACCounts__Ma_NV__25869641">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="ACCounts" EntitySet="ACCounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietDV__Ma_Di__1CF15040" Association="Self.FK__ChiTietDV__Ma_Di__1CF15040">
+            <End Role="DichVu" EntitySet="DichVu" />
+            <End Role="ChiTietDV" EntitySet="ChiTietDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChiTietDV__Ma_Ho__1BFD2C07" Association="Self.FK__ChiTietDV__Ma_Ho__1BFD2C07">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ChiTietDV" EntitySet="ChiTietDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__BacSi__1920BF5C" Association="Self.FK__HoaDon__BacSi__1920BF5C">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__Ma_BN__182C9B23" Association="Self.FK__HoaDon__Ma_BN__182C9B23">
+            <End Role="BenhNhan" EntitySet="BenhNhan" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ToaThuoc__BacSi__20C1E124" Association="Self.FK__ToaThuoc__BacSi__20C1E124">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="ToaThuoc" EntitySet="ToaThuoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ToaThuoc__Ma_Hoa__1FCDBCEB" Association="Self.FK__ToaThuoc__Ma_Hoa__1FCDBCEB">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ToaThuoc" EntitySet="ToaThuoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ToaThuoc__Ma_Thu__21B6055D" Association="Self.FK__ToaThuoc__Ma_Thu__21B6055D">
+            <End Role="Thuoc" EntitySet="Thuoc" />
+            <End Role="ToaThuoc" EntitySet="ToaThuoc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyPhongKhamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="DangNhap_Result">
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+          <Property Name="Quyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DanhSachBN_Result">
+          <Property Name="Ma_BN" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DanhSachDV_Result">
+          <Property Name="Ma_DichVu" Type="Int32" Nullable="false" />
+          <Property Name="TenDV" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DanhSachHDChuaTra_Result">
+          <Property Name="Ma_HoaDon" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="NgayKham" Type="DateTime" Nullable="false" />
+          <Property Name="TongTien" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DanhSachNV_Result">
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Chuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="TangCa" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DanhSachThuoc_Result">
+          <Property Name="Ma_Thuoc" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DanhSachToaThuocBN_Result">
+          <Property Name="Ten" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HuongDanSD" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayKham" Type="DateTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="HienDoanhThuNam_Result">
+          <Property Name="NamThu" Type="Int32" />
+          <Property Name="TONGTHU" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="HienDoanhThuNgay_Result">
+          <Property Name="NgayThu" Type="DateTime" />
+          <Property Name="TongThu" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="HienDoanhThuThang_Result">
+          <Property Name="ThangThu" Type="Int32" />
+          <Property Name="TONGTHU" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="TenDV_Result">
+          <Property Name="TenDV" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimBNTheoSDT_Result">
+          <Property Name="Ma_BN" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimBNTheoTen_Result">
+          <Property Name="Ma_BN" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimDVTheoMa_Result">
+          <Property Name="Ma_DichVu" Type="Int32" Nullable="false" />
+          <Property Name="TenDV" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimNVTheoChuc_Result">
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" />
+          <Property Name="Chuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="TangCa" Type="Int32" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimNVTheoMa_Result">
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" />
+          <Property Name="Chuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="TangCa" Type="Int32" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimNVTheoTen_Result">
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" />
+          <Property Name="Chuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="TangCa" Type="Int32" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimThuocTheoMa_Result">
+          <Property Name="Ma_Thuoc" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TimThuocTheoTen_Result">
+          <Property Name="Ma_Thuoc" Type="Int32" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="ACCount">
+          <Key>
+            <PropertyRef Name="Ma_NV" />
+          </Key>
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK__ACCounts__Ma_NV__25869641" FromRole="ACCounts" ToRole="NhanVien" />
+        </EntityType>
+        <EntityType Name="BenhNhan">
+          <Key>
+            <PropertyRef Name="Ma_BN" />
+          </Key>
+          <Property Name="Ma_BN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tuoi" Type="Int32" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__Ma_BN__182C9B23" FromRole="BenhNhan" ToRole="HoaDon" />
+        </EntityType>
+        <EntityType Name="DichVu">
+          <Key>
+            <PropertyRef Name="Ma_DichVu" />
+          </Key>
+          <Property Name="Ma_DichVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDV" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.ChiTietDV" FromRole="DichVu" ToRole="HoaDon" />
+        </EntityType>
+        <EntityType Name="DoanhThu">
+          <Key>
+            <PropertyRef Name="Ma_DoanhThu" />
+          </Key>
+          <Property Name="Ma_DoanhThu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayThu" Type="DateTime" Precision="0" />
+          <Property Name="TongThu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="Ma_HoaDon" />
+          </Key>
+          <Property Name="Ma_HoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_BN" Type="Int32" Nullable="false" />
+          <Property Name="NgayKham" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BacSi" Type="Int32" />
+          <Property Name="TongTien" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <NavigationProperty Name="BenhNhan" Relationship="Self.FK__HoaDon__Ma_BN__182C9B23" FromRole="HoaDon" ToRole="BenhNhan" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK__HoaDon__BacSi__1920BF5C" FromRole="HoaDon" ToRole="NhanVien" />
+          <NavigationProperty Name="ToaThuocs" Relationship="Self.FK__ToaThuoc__Ma_Hoa__1FCDBCEB" FromRole="HoaDon" ToRole="ToaThuoc" />
+          <NavigationProperty Name="DichVus" Relationship="Self.ChiTietDV" FromRole="HoaDon" ToRole="DichVu" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="Ma_NV" />
+          </Key>
+          <Property Name="Ma_NV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Chuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="TangCa" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <NavigationProperty Name="ACCount" Relationship="Self.FK__ACCounts__Ma_NV__25869641" FromRole="NhanVien" ToRole="ACCounts" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__BacSi__1920BF5C" FromRole="NhanVien" ToRole="HoaDon" />
+          <NavigationProperty Name="ToaThuocs" Relationship="Self.FK__ToaThuoc__BacSi__20C1E124" FromRole="NhanVien" ToRole="ToaThuoc" />
+        </EntityType>
+        <EntityType Name="Thuoc">
+          <Key>
+            <PropertyRef Name="Ma_Thuoc" />
+          </Key>
+          <Property Name="Ma_Thuoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <NavigationProperty Name="ToaThuocs" Relationship="Self.FK__ToaThuoc__Ma_Thu__21B6055D" FromRole="Thuoc" ToRole="ToaThuoc" />
+        </EntityType>
+        <EntityType Name="ToaThuoc">
+          <Key>
+            <PropertyRef Name="Ma_HoaDon" />
+            <PropertyRef Name="Ma_Thuoc" />
+          </Key>
+          <Property Name="Ma_HoaDon" Type="Int32" Nullable="false" />
+          <Property Name="Ma_Thuoc" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonVi" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HuongDanSD" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" Nullable="false" />
+          <Property Name="BacSi" Type="Int32" />
+          <NavigationProperty Name="HoaDon" Relationship="Self.FK__ToaThuoc__Ma_Hoa__1FCDBCEB" FromRole="ToaThuoc" ToRole="HoaDon" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK__ToaThuoc__BacSi__20C1E124" FromRole="ToaThuoc" ToRole="NhanVien" />
+          <NavigationProperty Name="Thuoc" Relationship="Self.FK__ToaThuoc__Ma_Thu__21B6055D" FromRole="ToaThuoc" ToRole="Thuoc" />
+        </EntityType>
+        <Association Name="FK__ACCounts__Ma_NV__25869641">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+          <End Role="ACCounts" Type="Self.ACCount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="Ma_NV" />
+            </Principal>
+            <Dependent Role="ACCounts">
+              <PropertyRef Name="Ma_NV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__Ma_BN__182C9B23">
+          <End Role="BenhNhan" Type="Self.BenhNhan" Multiplicity="1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BenhNhan">
+              <PropertyRef Name="Ma_BN" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="Ma_BN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__BacSi__1920BF5C">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="Ma_NV" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="BacSi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ToaThuoc__Ma_Hoa__1FCDBCEB">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="Ma_HoaDon" />
+            </Principal>
+            <Dependent Role="ToaThuoc">
+              <PropertyRef Name="Ma_HoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ToaThuoc__BacSi__20C1E124">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="Ma_NV" />
+            </Principal>
+            <Dependent Role="ToaThuoc">
+              <PropertyRef Name="BacSi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ToaThuoc__Ma_Thu__21B6055D">
+          <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+          <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thuoc">
+              <PropertyRef Name="Ma_Thuoc" />
+            </Principal>
+            <Dependent Role="ToaThuoc">
+              <PropertyRef Name="Ma_Thuoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ChiTietDV">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="*" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="QuanLyPhongKhamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCounts" EntityType="Self.ACCount" />
+          <EntitySet Name="BenhNhans" EntityType="Self.BenhNhan" />
+          <EntitySet Name="DichVus" EntityType="Self.DichVu" />
+          <EntitySet Name="DoanhThus" EntityType="Self.DoanhThu" />
+          <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+          <EntitySet Name="Thuocs" EntityType="Self.Thuoc" />
+          <EntitySet Name="ToaThuocs" EntityType="Self.ToaThuoc" />
+          <AssociationSet Name="FK__ACCounts__Ma_NV__25869641" Association="Self.FK__ACCounts__Ma_NV__25869641">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="ACCounts" EntitySet="ACCounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__Ma_BN__182C9B23" Association="Self.FK__HoaDon__Ma_BN__182C9B23">
+            <End Role="BenhNhan" EntitySet="BenhNhans" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__BacSi__1920BF5C" Association="Self.FK__HoaDon__BacSi__1920BF5C">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ToaThuoc__Ma_Hoa__1FCDBCEB" Association="Self.FK__ToaThuoc__Ma_Hoa__1FCDBCEB">
+            <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ToaThuoc" EntitySet="ToaThuocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ToaThuoc__BacSi__20C1E124" Association="Self.FK__ToaThuoc__BacSi__20C1E124">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="ToaThuoc" EntitySet="ToaThuocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ToaThuoc__Ma_Thu__21B6055D" Association="Self.FK__ToaThuoc__Ma_Thu__21B6055D">
+            <End Role="Thuoc" EntitySet="Thuocs" />
+            <End Role="ToaThuoc" EntitySet="ToaThuocs" />
+          </AssociationSet>
+          <AssociationSet Name="ChiTietDV" Association="Self.ChiTietDV">
+            <End Role="DichVu" EntitySet="DichVus" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <FunctionImport Name="DangNhap" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DangNhap_Result)">
+            <Parameter Name="TenTaiKhoan" Mode="In" Type="String" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DanhSachBN" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DanhSachBN_Result)" />
+          <FunctionImport Name="DanhSachDV" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DanhSachDV_Result)" />
+          <FunctionImport Name="DanhSachHDChuaTra" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DanhSachHDChuaTra_Result)" />
+          <FunctionImport Name="DanhSachNV" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DanhSachNV_Result)" />
+          <FunctionImport Name="DanhSachThuoc" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DanhSachThuoc_Result)" />
+          <FunctionImport Name="DanhSachToaThuocBN" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.DanhSachToaThuocBN_Result)">
+          <Parameter Name="Ma_BN" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="HienDoanhThuNam" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.HienDoanhThuNam_Result)" />
+          <FunctionImport Name="HienDoanhThuNgay" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.HienDoanhThuNgay_Result)">
+          <Parameter Name="ngay" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="HienDoanhThuThang" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.HienDoanhThuThang_Result)">
+          <Parameter Name="Ngay" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="TenDV" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TenDV_Result)" />
+          <FunctionImport Name="TimBNTheoSDT" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimBNTheoSDT_Result)">
+          <Parameter Name="SDT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimBNTheoTen" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimBNTheoTen_Result)">
+          <Parameter Name="Ten" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimDVTheoMa" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimDVTheoMa_Result)">
+          <Parameter Name="Ma_DV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TimNVTheoChuc" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimNVTheoChuc_Result)">
+          <Parameter Name="Chuc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimNVTheoMa" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimNVTheoMa_Result)">
+          <Parameter Name="MaNhanVien" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TimNVTheoTen" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimNVTheoTen_Result)">
+          <Parameter Name="HoTen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimThuocTheoMa" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimThuocTheoMa_Result)">
+          <Parameter Name="Ma_Thuoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TimThuocTheoTen" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.TimThuocTheoTen_Result)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ChiDinhDV">
+            <Parameter Name="Ma_BN" Mode="In" Type="Int32" />
+            <Parameter Name="Ma_DV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DoiMatKhau">
+            <Parameter Name="Ma_NV" Mode="In" Type="Int32" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SuaBenhNan">
+            <Parameter Name="Ma_BN" Mode="In" Type="Int32" />
+            <Parameter Name="HoTen" Mode="In" Type="String" />
+            <Parameter Name="Tuoi" Mode="In" Type="Int32" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Int32" />
+            <Parameter Name="SDT" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SuaDichVu">
+            <Parameter Name="Ma_DV" Mode="In" Type="Int32" />
+            <Parameter Name="TenDV" Mode="In" Type="String" />
+            <Parameter Name="Gia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SuaNhanVien">
+            <Parameter Name="Ma_NV" Mode="In" Type="Int32" />
+            <Parameter Name="HoTen" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="SDT" Mode="In" Type="String" />
+            <Parameter Name="Chuc" Mode="In" Type="String" />
+            <Parameter Name="Luong" Mode="In" Type="Int32" />
+            <Parameter Name="TangCa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SuaThuocCu">
+            <Parameter Name="Ma_Thuoc" Mode="In" Type="Int32" />
+            <Parameter Name="Ten" Mode="In" Type="String" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="DonVi" Mode="In" Type="String" />
+            <Parameter Name="Gia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThanhToanHoaDon">
+          <Parameter Name="Ma_HoaDon" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemBenhNhan">
+            <Parameter Name="HoTen" Mode="In" Type="String" />
+            <Parameter Name="Tuoi" Mode="In" Type="Int32" />
+            <Parameter Name="GioiTinh" Mode="In" Type="String" />
+            <Parameter Name="SDT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemDichVu">
+            <Parameter Name="TenDV" Mode="In" Type="String" />
+            <Parameter Name="Gia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemHoaDon">
+          <Parameter Name="Ma_BN" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemNhanVien">
+            <Parameter Name="HoTen" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="SDT" Mode="In" Type="String" />
+            <Parameter Name="Chuc" Mode="In" Type="String" />
+            <Parameter Name="Luong" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemThuocMoi">
+            <Parameter Name="Ten" Mode="In" Type="String" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="DonVi" Mode="In" Type="String" />
+            <Parameter Name="Gia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemToaThuoc">
+            <Parameter Name="Ma_BN" Mode="In" Type="Int32" />
+            <Parameter Name="TenThuoc" Mode="In" Type="String" />
+            <Parameter Name="SoLuong" Mode="In" Type="Decimal" />
+            <Parameter Name="Ma_NV" Mode="In" Type="Int32" />
+            <Parameter Name="HuongDanSD" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="XoaDichVu">
+          <Parameter Name="Ma_DV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaNhanVien">
+          <Parameter Name="Ma_NV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaThuoc">
+          <Parameter Name="Ma_Thuoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThongTinInDichVu" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.ThongTinInDichVu_Result)">
+            <Parameter Name="Ma_HoaDon" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThongTinInToaThuoc" IsComposable="true" ReturnType="Collection(QuanLyPhongKhamModel.ThongTinInToaThuoc_Result)">
+            <Parameter Name="Ma_HoaDon" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ThongTinInDichVu_Result">
+          <Property Type="String" Name="TenDV" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="Gia" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ThongTinInToaThuoc_Result">
+          <Property Type="String" Name="Ten" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="HuongDanSD" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="SoLuong" Nullable="false" />
+          <Property Type="String" Name="DonVi" Nullable="false" MaxLength="7" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyPhongKhamModelStoreContainer" CdmEntityContainer="QuanLyPhongKhamEntities">
+          <EntitySetMapping Name="ACCounts">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.ACCount">
+              <MappingFragment StoreEntitySet="ACCounts">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenhNhans">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.BenhNhan">
+              <MappingFragment StoreEntitySet="BenhNhan">
+                <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DichVus">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.DichVu">
+              <MappingFragment StoreEntitySet="DichVu">
+                <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+                <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoanhThus">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.DoanhThu">
+              <MappingFragment StoreEntitySet="DoanhThu">
+                <ScalarProperty Name="Ma_DoanhThu" ColumnName="Ma_DoanhThu" />
+                <ScalarProperty Name="NgayThu" ColumnName="NgayThu" />
+                <ScalarProperty Name="TongThu" ColumnName="TongThu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDons">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+                <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+                <ScalarProperty Name="NgayKham" ColumnName="NgayKham" />
+                <ScalarProperty Name="BacSi" ColumnName="BacSi" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanViens">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.NhanVien">
+              <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thuocs">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.Thuoc">
+              <MappingFragment StoreEntitySet="Thuoc">
+                <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToaThuocs">
+            <EntityTypeMapping TypeName="QuanLyPhongKhamModel.ToaThuoc">
+              <MappingFragment StoreEntitySet="ToaThuoc">
+                <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+                <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="HuongDanSD" ColumnName="HuongDanSD" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="BacSi" ColumnName="BacSi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ChiTietDV" TypeName="QuanLyPhongKhamModel.ChiTietDV" StoreEntitySet="ChiTietDV">
+            <EndProperty Name="DichVu">
+              <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+            </EndProperty>
+            <EndProperty Name="HoaDon">
+              <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DangNhap" FunctionImportName="DangNhap">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DangNhap_Result">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachBN" FunctionImportName="DanhSachBN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachBN_Result">
+                <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachDV" FunctionImportName="DanhSachDV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachDV_Result">
+                <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+                <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachHDChuaTra" FunctionImportName="DanhSachHDChuaTra">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachHDChuaTra_Result">
+                <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="NgayKham" ColumnName="NgayKham" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachNV" FunctionImportName="DanhSachNV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachNV_Result">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachThuoc" FunctionImportName="DanhSachThuoc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachThuoc_Result">
+                <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachToaThuocBN" FunctionImportName="DanhSachToaThuocBN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachToaThuocBN_Result">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="HuongDanSD" ColumnName="HuongDanSD" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="NgayKham" ColumnName="NgayKham" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.HienDoanhThuNam" FunctionImportName="HienDoanhThuNam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.HienDoanhThuNam_Result">
+                <ScalarProperty Name="NamThu" ColumnName="NamThu" />
+                <ScalarProperty Name="TONGTHU" ColumnName="TONGTHU" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.HienDoanhThuNgay" FunctionImportName="HienDoanhThuNgay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.HienDoanhThuNgay_Result">
+                <ScalarProperty Name="NgayThu" ColumnName="NgayThu" />
+                <ScalarProperty Name="TongThu" ColumnName="TongThu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.HienDoanhThuThang" FunctionImportName="HienDoanhThuThang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.HienDoanhThuThang_Result">
+                <ScalarProperty Name="ThangThu" ColumnName="ThangThu" />
+                <ScalarProperty Name="TONGTHU" ColumnName="TONGTHU" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TenDV" FunctionImportName="TenDV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TenDV_Result">
+                <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimBNTheoSDT" FunctionImportName="TimBNTheoSDT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimBNTheoSDT_Result">
+                <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimBNTheoTen" FunctionImportName="TimBNTheoTen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimBNTheoTen_Result">
+                <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimDVTheoMa" FunctionImportName="TimDVTheoMa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimDVTheoMa_Result">
+                <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+                <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimNVTheoChuc" FunctionImportName="TimNVTheoChuc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimNVTheoChuc_Result">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimNVTheoMa" FunctionImportName="TimNVTheoMa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimNVTheoMa_Result">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimNVTheoTen" FunctionImportName="TimNVTheoTen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimNVTheoTen_Result">
+                <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimThuocTheoMa" FunctionImportName="TimThuocTheoMa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimThuocTheoMa_Result">
+                <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimThuocTheoTen" FunctionImportName="TimThuocTheoTen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimThuocTheoTen_Result">
+                <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ChiDinhDV" FunctionName="QuanLyPhongKhamModel.Store.ChiDinhDV" />
+          <FunctionImportMapping FunctionImportName="DoiMatKhau" FunctionName="QuanLyPhongKhamModel.Store.DoiMatKhau" />
+          <FunctionImportMapping FunctionImportName="SuaBenhNan" FunctionName="QuanLyPhongKhamModel.Store.SuaBenhNan" />
+          <FunctionImportMapping FunctionImportName="SuaDichVu" FunctionName="QuanLyPhongKhamModel.Store.SuaDichVu" />
+          <FunctionImportMapping FunctionImportName="SuaNhanVien" FunctionName="QuanLyPhongKhamModel.Store.SuaNhanVien" />
+          <FunctionImportMapping FunctionImportName="SuaThuocCu" FunctionName="QuanLyPhongKhamModel.Store.SuaThuocCu" />
+          <FunctionImportMapping FunctionImportName="ThanhToanHoaDon" FunctionName="QuanLyPhongKhamModel.Store.ThanhToanHoaDon" />
+          <FunctionImportMapping FunctionImportName="ThemBenhNhan" FunctionName="QuanLyPhongKhamModel.Store.ThemBenhNhan" />
+          <FunctionImportMapping FunctionImportName="ThemDichVu" FunctionName="QuanLyPhongKhamModel.Store.ThemDichVu" />
+          <FunctionImportMapping FunctionImportName="ThemHoaDon" FunctionName="QuanLyPhongKhamModel.Store.ThemHoaDon" />
+          <FunctionImportMapping FunctionImportName="ThemNhanVien" FunctionName="QuanLyPhongKhamModel.Store.ThemNhanVien" />
+          <FunctionImportMapping FunctionImportName="ThemThuocMoi" FunctionName="QuanLyPhongKhamModel.Store.ThemThuocMoi" />
+          <FunctionImportMapping FunctionImportName="ThemToaThuoc" FunctionName="QuanLyPhongKhamModel.Store.ThemToaThuoc" />
+          <FunctionImportMapping FunctionImportName="XoaDichVu" FunctionName="QuanLyPhongKhamModel.Store.XoaDichVu" />
+          <FunctionImportMapping FunctionImportName="XoaNhanVien" FunctionName="QuanLyPhongKhamModel.Store.XoaNhanVien" />
+          <FunctionImportMapping FunctionImportName="XoaThuoc" FunctionName="QuanLyPhongKhamModel.Store.XoaThuoc" />
+          <FunctionImportMapping FunctionImportName="ThongTinInDichVu" FunctionName="QuanLyPhongKhamModel.Store.ThongTinInDichVu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.ThongTinInDichVu_Result">
+                <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ThongTinInToaThuoc" FunctionName="QuanLyPhongKhamModel.Store.ThongTinInToaThuoc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.ThongTinInToaThuoc_Result">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="HuongDanSD" ColumnName="HuongDanSD" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanLyPhongKhamModelStoreContainer" CdmEntityContainer="QuanLyPhongKhamEntities">
+    <EntitySetMapping Name="ACCounts">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.ACCount">
+        <MappingFragment StoreEntitySet="ACCounts">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BenhNhans">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.BenhNhan">
+        <MappingFragment StoreEntitySet="BenhNhan">
+          <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DichVus">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.DichVu">
+        <MappingFragment StoreEntitySet="DichVu">
+          <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+          <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoanhThus">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.DoanhThu">
+        <MappingFragment StoreEntitySet="DoanhThu">
+          <ScalarProperty Name="Ma_DoanhThu" ColumnName="Ma_DoanhThu" />
+          <ScalarProperty Name="NgayThu" ColumnName="NgayThu" />
+          <ScalarProperty Name="TongThu" ColumnName="TongThu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDons">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+          <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+          <ScalarProperty Name="NgayKham" ColumnName="NgayKham" />
+          <ScalarProperty Name="BacSi" ColumnName="BacSi" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanViens">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.NhanVien">
+        <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Thuocs">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.Thuoc">
+        <MappingFragment StoreEntitySet="Thuoc">
+          <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToaThuocs">
+      <EntityTypeMapping TypeName="QuanLyPhongKhamModel.ToaThuoc">
+        <MappingFragment StoreEntitySet="ToaThuoc">
+          <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+          <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="HuongDanSD" ColumnName="HuongDanSD" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="BacSi" ColumnName="BacSi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ChiTietDV" TypeName="QuanLyPhongKhamModel.ChiTietDV" StoreEntitySet="ChiTietDV">
+      <EndProperty Name="DichVu">
+        <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+      </EndProperty>
+      <EndProperty Name="HoaDon">
+        <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DangNhap" FunctionImportName="DangNhap">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DangNhap_Result">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachBN" FunctionImportName="DanhSachBN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachBN_Result">
+          <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachDV" FunctionImportName="DanhSachDV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachDV_Result">
+          <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+          <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachHDChuaTra" FunctionImportName="DanhSachHDChuaTra">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachHDChuaTra_Result">
+          <ScalarProperty Name="Ma_HoaDon" ColumnName="Ma_HoaDon" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="NgayKham" ColumnName="NgayKham" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachNV" FunctionImportName="DanhSachNV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachNV_Result">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachThuoc" FunctionImportName="DanhSachThuoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachThuoc_Result">
+          <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.DanhSachToaThuocBN" FunctionImportName="DanhSachToaThuocBN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.DanhSachToaThuocBN_Result">
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="HuongDanSD" ColumnName="HuongDanSD" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="NgayKham" ColumnName="NgayKham" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.HienDoanhThuNam" FunctionImportName="HienDoanhThuNam">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.HienDoanhThuNam_Result">
+          <ScalarProperty Name="NamThu" ColumnName="NamThu" />
+          <ScalarProperty Name="TONGTHU" ColumnName="TONGTHU" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.HienDoanhThuNgay" FunctionImportName="HienDoanhThuNgay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.HienDoanhThuNgay_Result">
+          <ScalarProperty Name="NgayThu" ColumnName="NgayThu" />
+          <ScalarProperty Name="TongThu" ColumnName="TongThu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.HienDoanhThuThang" FunctionImportName="HienDoanhThuThang">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.HienDoanhThuThang_Result">
+          <ScalarProperty Name="ThangThu" ColumnName="ThangThu" />
+          <ScalarProperty Name="TONGTHU" ColumnName="TONGTHU" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TenDV" FunctionImportName="TenDV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TenDV_Result">
+          <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimBNTheoSDT" FunctionImportName="TimBNTheoSDT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimBNTheoSDT_Result">
+          <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimBNTheoTen" FunctionImportName="TimBNTheoTen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimBNTheoTen_Result">
+          <ScalarProperty Name="Ma_BN" ColumnName="Ma_BN" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimDVTheoMa" FunctionImportName="TimDVTheoMa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimDVTheoMa_Result">
+          <ScalarProperty Name="Ma_DichVu" ColumnName="Ma_DichVu" />
+          <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimNVTheoChuc" FunctionImportName="TimNVTheoChuc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimNVTheoChuc_Result">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimNVTheoMa" FunctionImportName="TimNVTheoMa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimNVTheoMa_Result">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimNVTheoTen" FunctionImportName="TimNVTheoTen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimNVTheoTen_Result">
+          <ScalarProperty Name="Ma_NV" ColumnName="Ma_NV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="Chuc" ColumnName="Chuc" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="TangCa" ColumnName="TangCa" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimThuocTheoMa" FunctionImportName="TimThuocTheoMa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimThuocTheoMa_Result">
+          <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="QuanLyPhongKhamModel.Store.TimThuocTheoTen" FunctionImportName="TimThuocTheoTen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.TimThuocTheoTen_Result">
+          <ScalarProperty Name="Ma_Thuoc" ColumnName="Ma_Thuoc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ChiDinhDV" FunctionName="QuanLyPhongKhamModel.Store.ChiDinhDV" />
+    <FunctionImportMapping FunctionImportName="DoiMatKhau" FunctionName="QuanLyPhongKhamModel.Store.DoiMatKhau" />
+    <FunctionImportMapping FunctionImportName="SuaBenhNan" FunctionName="QuanLyPhongKhamModel.Store.SuaBenhNan" />
+    <FunctionImportMapping FunctionImportName="SuaDichVu" FunctionName="QuanLyPhongKhamModel.Store.SuaDichVu" />
+    <FunctionImportMapping FunctionImportName="SuaNhanVien" FunctionName="QuanLyPhongKhamModel.Store.SuaNhanVien" />
+    <FunctionImportMapping FunctionImportName="SuaThuocCu" FunctionName="QuanLyPhongKhamModel.Store.SuaThuocCu" />
+    <FunctionImportMapping FunctionImportName="ThanhToanHoaDon" FunctionName="QuanLyPhongKhamModel.Store.ThanhToanHoaDon" />
+    <FunctionImportMapping FunctionImportName="ThemBenhNhan" FunctionName="QuanLyPhongKhamModel.Store.ThemBenhNhan" />
+    <FunctionImportMapping FunctionImportName="ThemDichVu" FunctionName="QuanLyPhongKhamModel.Store.ThemDichVu" />
+    <FunctionImportMapping FunctionImportName="ThemHoaDon" FunctionName="QuanLyPhongKhamModel.Store.ThemHoaDon" />
+    <FunctionImportMapping FunctionImportName="ThemNhanVien" FunctionName="QuanLyPhongKhamModel.Store.ThemNhanVien" />
+    <FunctionImportMapping FunctionImportName="ThemThuocMoi" FunctionName="QuanLyPhongKhamModel.Store.ThemThuocMoi" />
+    <FunctionImportMapping FunctionImportName="ThemToaThuoc" FunctionName="QuanLyPhongKhamModel.Store.ThemToaThuoc" />
+    <FunctionImportMapping FunctionImportName="XoaDichVu" FunctionName="QuanLyPhongKhamModel.Store.XoaDichVu" />
+    <FunctionImportMapping FunctionImportName="XoaNhanVien" FunctionName="QuanLyPhongKhamModel.Store.XoaNhanVien" />
+    <FunctionImportMapping FunctionImportName="XoaThuoc" FunctionName="QuanLyPhongKhamModel.Store.XoaThuoc" />
+    <FunctionImportMapping FunctionImportName="ThongTinInDichVu" FunctionName="QuanLyPhongKhamModel.Store.ThongTinInDichVu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.ThongTinInDichVu_Result">
+          <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ThongTinInToaThuoc" FunctionName="QuanLyPhongKhamModel.Store.ThongTinInToaThuoc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyPhongKhamModel.ThongTinInToaThuoc_Result">
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="HuongDanSD" ColumnName="HuongDanSD" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

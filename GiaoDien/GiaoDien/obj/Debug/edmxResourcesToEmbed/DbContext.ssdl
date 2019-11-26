@@ -1,0 +1,583 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyPhongKhamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACCounts">
+    <Key>
+      <PropertyRef Name="Ma_NV" />
+    </Key>
+    <Property Name="Ma_NV" Type="int" Nullable="false" />
+    <Property Name="TenTaiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PassWord" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Quyen" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BenhNhan">
+    <Key>
+      <PropertyRef Name="Ma_BN" />
+    </Key>
+    <Property Name="Ma_BN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tuoi" Type="int" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChiTietDV">
+    <Key>
+      <PropertyRef Name="Ma_HoaDon" />
+      <PropertyRef Name="Ma_DichVu" />
+    </Key>
+    <Property Name="Ma_HoaDon" Type="int" Nullable="false" />
+    <Property Name="Ma_DichVu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DichVu">
+    <Key>
+      <PropertyRef Name="Ma_DichVu" />
+    </Key>
+    <Property Name="Ma_DichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Gia" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="bit" />
+  </EntityType>
+  <EntityType Name="DoanhThu">
+    <Key>
+      <PropertyRef Name="Ma_DoanhThu" />
+    </Key>
+    <Property Name="Ma_DoanhThu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayThu" Type="date" />
+    <Property Name="TongThu" Type="int" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="Ma_HoaDon" />
+    </Key>
+    <Property Name="Ma_HoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ma_BN" Type="int" Nullable="false" />
+    <Property Name="NgayKham" Type="date" Nullable="false" />
+    <Property Name="BacSi" Type="int" />
+    <Property Name="TongTien" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="bit" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="Ma_NV" />
+    </Key>
+    <Property Name="Ma_NV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NgaySinh" Type="date" Nullable="false" />
+    <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+    <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Luong" Type="int" Nullable="false" />
+    <Property Name="TangCa" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="bit" />
+  </EntityType>
+  <EntityType Name="Thuoc">
+    <Key>
+      <PropertyRef Name="Ma_Thuoc" />
+    </Key>
+    <Property Name="Ma_Thuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="Gia" Type="int" Nullable="false" />
+    <Property Name="TrangThai" Type="bit" />
+  </EntityType>
+  <EntityType Name="ToaThuoc">
+    <Key>
+      <PropertyRef Name="Ma_HoaDon" />
+      <PropertyRef Name="Ma_Thuoc" />
+    </Key>
+    <Property Name="Ma_HoaDon" Type="int" Nullable="false" />
+    <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="HuongDanSD" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Gia" Type="int" Nullable="false" />
+    <Property Name="BacSi" Type="int" />
+  </EntityType>
+  <Association Name="FK__ACCounts__Ma_NV__25869641">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="ACCounts" Type="Self.ACCounts" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="Ma_NV" />
+      </Principal>
+      <Dependent Role="ACCounts">
+        <PropertyRef Name="Ma_NV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDV__Ma_Di__1CF15040">
+    <End Role="DichVu" Type="Self.DichVu" Multiplicity="1" />
+    <End Role="ChiTietDV" Type="Self.ChiTietDV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DichVu">
+        <PropertyRef Name="Ma_DichVu" />
+      </Principal>
+      <Dependent Role="ChiTietDV">
+        <PropertyRef Name="Ma_DichVu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDV__Ma_Ho__1BFD2C07">
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+    <End Role="ChiTietDV" Type="Self.ChiTietDV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="Ma_HoaDon" />
+      </Principal>
+      <Dependent Role="ChiTietDV">
+        <PropertyRef Name="Ma_HoaDon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__BacSi__1920BF5C">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="Ma_NV" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="BacSi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__Ma_BN__182C9B23">
+    <End Role="BenhNhan" Type="Self.BenhNhan" Multiplicity="1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BenhNhan">
+        <PropertyRef Name="Ma_BN" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="Ma_BN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ToaThuoc__BacSi__20C1E124">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="Ma_NV" />
+      </Principal>
+      <Dependent Role="ToaThuoc">
+        <PropertyRef Name="BacSi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ToaThuoc__Ma_Hoa__1FCDBCEB">
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+    <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="Ma_HoaDon" />
+      </Principal>
+      <Dependent Role="ToaThuoc">
+        <PropertyRef Name="Ma_HoaDon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ToaThuoc__Ma_Thu__21B6055D">
+    <End Role="Thuoc" Type="Self.Thuoc" Multiplicity="1" />
+    <End Role="ToaThuoc" Type="Self.ToaThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thuoc">
+        <PropertyRef Name="Ma_Thuoc" />
+      </Principal>
+      <Dependent Role="ToaThuoc">
+        <PropertyRef Name="Ma_Thuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ChiDinhDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_BN" Type="int" Mode="In" />
+    <Parameter Name="Ma_DV" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DangNhap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenTaiKhoan" Type="varchar" Mode="In" />
+    <Parameter Name="PassWord" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_NV" Type="int" Nullable="false" />
+          <Property Name="Quyen" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DanhSachBN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_BN" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tuoi" Type="int" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DanhSachDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_DichVu" Type="int" Nullable="false" />
+          <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DanhSachHDChuaTra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_HoaDon" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tuoi" Type="int" />
+          <Property Name="NgayKham" Type="date" Nullable="false" />
+          <Property Name="TongTien" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DanhSachNV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_NV" Type="int" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+          <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="TangCa" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DanhSachThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DanhSachToaThuocBN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_BN" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="HuongDanSD" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="NgayKham" Type="date" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="DoiMatKhau" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_NV" Type="int" Mode="In" />
+    <Parameter Name="PassWord" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="HienDoanhThuNam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="NamThu" Type="int" />
+          <Property Name="TONGTHU" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="HienDoanhThuNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ngay" Type="date" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="NgayThu" Type="date" />
+          <Property Name="TongThu" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="HienDoanhThuThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ngay" Type="date" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ThangThu" Type="int" />
+          <Property Name="TONGTHU" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="SuaBenhNan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_BN" Type="int" Mode="In" />
+    <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Tuoi" Type="int" Mode="In" />
+    <Parameter Name="GioiTinh" Type="int" Mode="In" />
+    <Parameter Name="SDT" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SuaDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_DV" Type="int" Mode="In" />
+    <Parameter Name="TenDV" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SuaNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_NV" Type="int" Mode="In" />
+    <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="NgaySinh" Type="date" Mode="In" />
+    <Parameter Name="SDT" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Chuc" Type="nvarchar" Mode="In" />
+    <Parameter Name="Luong" Type="int" Mode="In" />
+    <Parameter Name="TangCa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SuaThuocCu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_Thuoc" Type="int" Mode="In" />
+    <Parameter Name="Ten" Type="nvarchar" Mode="In" />
+    <Parameter Name="SoLuong" Type="int" Mode="In" />
+    <Parameter Name="DonVi" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TenDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="ThanhToanHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_HoaDon" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ThemBenhNhan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Tuoi" Type="int" Mode="In" />
+    <Parameter Name="GioiTinh" Type="nvarchar" Mode="In" />
+    <Parameter Name="SDT" Type="char" Mode="In" />
+  </Function>
+  <Function Name="ThemDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenDV" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ThemHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_BN" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ThemNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HoTen" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="NgaySinh" Type="date" Mode="In" />
+    <Parameter Name="SDT" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Chuc" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Luong" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ThemThuocMoi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ten" Type="nvarchar" Mode="In" />
+    <Parameter Name="SoLuong" Type="int" Mode="In" />
+    <Parameter Name="DonVi" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gia" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ThemToaThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_BN" Type="int" Mode="In" />
+    <Parameter Name="TenThuoc" Type="nvarchar" Mode="In" />
+    <Parameter Name="SoLuong" Type="decimal" Mode="In" />
+    <Parameter Name="Ma_NV" Type="int" Mode="In" />
+    <Parameter Name="HuongDanSD" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ThongTinInDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_HoaDon" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="ThongTinInToaThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_HoaDon" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="HuongDanSD" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimBNTheoSDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SDT" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_BN" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tuoi" Type="int" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimBNTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ten" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_BN" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tuoi" Type="int" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="SDT" Type="char" MaxLength="12" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimDVTheoMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_DV" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_DichVu" Type="int" Nullable="false" />
+          <Property Name="TenDV" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimNVTheoChuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Chuc" Type="nvarchar(max)" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_NV" Type="int" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="TangCa" Type="int" Nullable="false" />
+          <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimNVTheoMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaNhanVien" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_NV" Type="int" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="TangCa" Type="int" Nullable="false" />
+          <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimNVTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_NV" Type="int" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="Chuc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="TangCa" Type="int" Nullable="false" />
+          <Property Name="SDT" Type="varchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimThuocTheoMa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_Thuoc" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Gia" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TimThuocTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="nvarchar(max)" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Ma_Thuoc" Type="int" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="XoaDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_DV" Type="int" Mode="In" />
+  </Function>
+  <Function Name="XoaNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_NV" Type="int" Mode="In" />
+  </Function>
+  <Function Name="XoaThuoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_Thuoc" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="QuanLyPhongKhamModelStoreContainer">
+    <EntitySet Name="ACCounts" EntityType="Self.ACCounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BenhNhan" EntityType="Self.BenhNhan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietDV" EntityType="Self.ChiTietDV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DoanhThu" EntityType="Self.DoanhThu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thuoc" EntityType="Self.Thuoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToaThuoc" EntityType="Self.ToaThuoc" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ACCounts__Ma_NV__25869641" Association="Self.FK__ACCounts__Ma_NV__25869641">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="ACCounts" EntitySet="ACCounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDV__Ma_Di__1CF15040" Association="Self.FK__ChiTietDV__Ma_Di__1CF15040">
+      <End Role="DichVu" EntitySet="DichVu" />
+      <End Role="ChiTietDV" EntitySet="ChiTietDV" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDV__Ma_Ho__1BFD2C07" Association="Self.FK__ChiTietDV__Ma_Ho__1BFD2C07">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="ChiTietDV" EntitySet="ChiTietDV" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__BacSi__1920BF5C" Association="Self.FK__HoaDon__BacSi__1920BF5C">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__Ma_BN__182C9B23" Association="Self.FK__HoaDon__Ma_BN__182C9B23">
+      <End Role="BenhNhan" EntitySet="BenhNhan" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ToaThuoc__BacSi__20C1E124" Association="Self.FK__ToaThuoc__BacSi__20C1E124">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="ToaThuoc" EntitySet="ToaThuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ToaThuoc__Ma_Hoa__1FCDBCEB" Association="Self.FK__ToaThuoc__Ma_Hoa__1FCDBCEB">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="ToaThuoc" EntitySet="ToaThuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ToaThuoc__Ma_Thu__21B6055D" Association="Self.FK__ToaThuoc__Ma_Thu__21B6055D">
+      <End Role="Thuoc" EntitySet="Thuoc" />
+      <End Role="ToaThuoc" EntitySet="ToaThuoc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

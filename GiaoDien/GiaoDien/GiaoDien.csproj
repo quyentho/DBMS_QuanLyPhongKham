@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3979BE0-F860-4F19-BE0B-0ED81DC55FD4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GiaoDien</RootNamespace>
+    <AssemblyName>GiaoDien</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACCount.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BenhNhan.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BSForm.Designer.cs">
+      <DependentUpon>BSForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChiDinhThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChiDinhThuoc.Designer.cs">
+      <DependentUpon>ChiDinhThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DangNhap_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachBN_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachDV_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachHDChuaTra_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachNV_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachThuoc_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachToaThuocBN_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DichVu.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoanhThu.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormChiDinhDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChiDinhDV.Designer.cs">
+      <DependentUpon>FormChiDinhDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDangNhap.Designer.cs">
+      <DependentUpon>FormDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormThem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThem.Designer.cs">
+      <DependentUpon>FormThem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HienDoanhThuNam_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HienDoanhThuNgay_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HienDoanhThuThang_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HoaDon.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVien.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TenDV_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThongTinInDichVu_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThongTinInToaThuoc_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Thuoc.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimBNTheoSDT_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimBNTheoTen_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimDVTheoMa_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimNVTheoChuc_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimNVTheoMa_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimNVTheoTen_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimThuocTheoMa_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimThuocTheoTen_Result.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ToaThuoc.cs">
+      <DependentUpon>DbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UC_AddBN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_AddBN.Designer.cs">
+      <DependentUpon>UC_AddBN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_AddDichVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_AddDichVu.Designer.cs">
+      <DependentUpon>UC_AddDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_AddEmp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_AddEmp.Designer.cs">
+      <DependentUpon>UC_AddEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_AddThuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_AddThuoc.Designer.cs">
+      <DependentUpon>UC_AddThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_buttons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_buttons.Designer.cs">
+      <DependentUpon>UC_buttons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_MyInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_MyInfo.Designer.cs">
+      <DependentUpon>UC_MyInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_PatientList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_PatientList.Designer.cs">
+      <DependentUpon>UC_PatientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ChiDinhDV.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_ChiDinhDV.Designer.cs">
+      <DependentUpon>UC_ChiDinhDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Radio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Radio.Designer.cs">
+      <DependentUpon>UC_Radio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Search.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Search.Designer.cs">
+      <DependentUpon>UC_Search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Show.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Show.Designer.cs">
+      <DependentUpon>UC_Show.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YtaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YtaForm.Designer.cs">
+      <DependentUpon>YtaForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BSForm.resx">
+      <DependentUpon>BSForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChiDinhThuoc.resx">
+      <DependentUpon>ChiDinhThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChiDinhDV.resx">
+      <DependentUpon>FormChiDinhDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDangNhap.resx">
+      <DependentUpon>FormDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThem.resx">
+      <DependentUpon>FormThem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UC_AddBN.resx">
+      <DependentUpon>UC_AddBN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_AddDichVu.resx">
+      <DependentUpon>UC_AddDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_AddEmp.resx">
+      <DependentUpon>UC_AddEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_AddThuoc.resx">
+      <DependentUpon>UC_AddThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_buttons.resx">
+      <DependentUpon>UC_buttons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_MyInfo.resx">
+      <DependentUpon>UC_MyInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_ChiDinhDV.resx">
+      <DependentUpon>UC_ChiDinhDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_PatientList.resx">
+      <DependentUpon>UC_PatientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_Radio.resx">
+      <DependentUpon>UC_Radio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_Search.resx">
+      <DependentUpon>UC_Search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_Show.resx">
+      <DependentUpon>UC_Show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YtaForm.resx">
+      <DependentUpon>YtaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="DbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbContext.edmx.diagram">
+      <DependentUpon>DbContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbContext.edmx</DependentUpon>
+      <LastGenOutput>DbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbContext.edmx</DependentUpon>
+      <LastGenOutput>DbContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+</Project>
